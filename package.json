@@ -8,7 +8,12 @@
     "fs-server1": "cross-env NOTES_MODEL=fs PORT=3001 node ./app.mjs",
     "fs-server2": "cross-env NOTES_MODEL=fs PORT=3002 node ./app.mjs",
     "level-start": "cross-env DEBUG=notes:* PORT=3000 NOTES_MODEL=level node ./app.mjs",
-    "sqlite3-setup": "sqlite3 chap07.sqlite3 --init models/schema-sqlite3.sql"
+    "level-server1": "cross-env NOTES_MODEL=level PORT=3001 node ./app.mjs",
+    "level-server2": "cross-env NOTES_MODEL=level PORT=3002 node ./app.mjs",
+    "sqlite3-setup": "sqlite3 chap07.sqlite3 --init models/schema-sqlite3.sql",
+    "sqlite3-start": "cross-env SQLITE_FILE=chap07.sqlite3 DEBUG=notes:* NOTES_MODEL=sqlite3 node ./app.mjs",
+    "sqlite3-server1": "cross-env SQLITE_FILE=chap07.sqlite3 NOTES_MODEL=sqlite3 PORT=3001 node ./app.mjs",
+    "sqlite3-server2": "cross-env SQLITE_FILE=chap07.sqlite3 NOTES_MODEL=sqlite3 PORT=3002 node ./app.mjs"
   },
   "dependencies": {
     "bootstrap": "4.5.x",
