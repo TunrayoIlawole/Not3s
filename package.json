@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cross-env DEBUG=notes:* node ./app.mjs"
+    "start": "cross-env DEBUG=notes:* node ./app.mjs",
+    "fs-start": "cross-env DEBUG=notes:* PORT=3000 NOTES_MODEL=fs node ./app.mjs",
+    "fs-server1": "cross-env NOTES_MODEL=fs PORT=3001 node ./app.mjs",
+    "fs-server2": "cross-env NOTES_MODEL=fs PORT=3002 node ./app.mjs",
+    "level-start": "cross-env DEBUG=notes:* PORT=3000 NOTES_MODEL=level node ./app.mjs",
+    "sqlite3-setup": "sqlite3 chap07.sqlite3 --init models/schema-sqlite3.sql"
   },
   "dependencies": {
     "bootstrap": "4.5.x",
@@ -12,11 +17,14 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "feather-icons": "4.25.x",
+    "fs-extra": "^10.0.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "jquery": "3.5.x",
+    "level": "^6.0.1",
     "morgan": "~1.9.1",
     "popper.js": "1.16.x",
-    "rotating-file-stream": "^3.0.2"
+    "rotating-file-stream": "^3.0.2",
+    "sqlite3": "^5.0.2"
   }
 }

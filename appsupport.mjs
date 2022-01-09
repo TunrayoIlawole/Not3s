@@ -5,6 +5,8 @@ const dbgerror = DBG('notes:error');
 
 import * as util from 'util';
 
+import { NotesStore } from './models/notes-store.mjs';
+
 process.on('uncaughtException', function(err) {
     console.error(`I've crashed!!! - ${(err.stack || err)}`);
 });
@@ -43,6 +45,10 @@ export function onError(error) {
             console.error(`${bind} is already in use`);
             process.exit(1);
             break;
+        case 'ENOTESSTORE':
+            console.error(`Notes data store initialization failure because `, error.error);
+            process.exit(1);
+            break;
         default:
             throw error;
     }
@@ -73,3 +79,17 @@ export function basicErrorHandler(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 }
+
+async function catchProcessDeath() {
+    debug('urk...');
+    await NotesStore.close();
+    await server.close();
+    process.exit(0);
+}
+
+// listen to the operating system signals
+process.on('SIGTERM', catchProcessDeath);
+process.on('SIGINT', catchProcessDeath);
+process.on('SIGHUP', catchProcessDeath);
+
+process.on('exit', () => { debug('exiting...'); });
