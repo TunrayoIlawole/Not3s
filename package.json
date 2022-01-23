@@ -1,0 +1,22 @@
+{
+  "name": "users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^5.1.0",
+    "cross-env": "^7.0.3",
+    "debug": "^4.3.3",
+    "fs-extra": "^9.1.0",
+    "js-yaml": "^3.14.1",
+    "restify": "^8.6.0",
+    "restify-clients": "^2.6.9",
+    "sequelize": "^6.13.0",
+    "sqlite3": "^5.0.2"
+  }
+}
